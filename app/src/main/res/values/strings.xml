@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FlickrGallery</string>
+    <string name="ok_txt">Ok</string>
+    <string name="close_txt">Close</string>
+    <string name="server_error">Something went while getting results from server</string>
+    <string name="invalid_data_txt">Invalid data received, please re-try</string>
+    <string name="no_network">Please connect to internet</string>
+</resources>

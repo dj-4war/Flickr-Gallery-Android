@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+        <dimen name="feed_thumb_height">220dp</dimen>
+        <dimen name="feed_thumb_width">220dp</dimen>
+        <dimen name="grid_column_height">170dp</dimen>
+
+        <dimen name="cancel_btn_size">40dp</dimen>
+
+        <!-- Text -->
+        <dimen name="textSizeMicro">12sp</dimen>
+        <dimen name="textSizeSmall">14sp</dimen>
+        <dimen name="textSizeSmallPlus">15sp</dimen>
+        <dimen name="textSizeMedium">16sp</dimen>
+        <dimen name="textSizeLarge">18sp</dimen>
+        <dimen name="textSizeLargePlus">19sp</dimen>
+        <dimen name="textSizeExtraLarge">25sp</dimen>
+        <dimen name="EndCallStatusTextSize">24sp</dimen>
+
+        <!-- Padding -->
+        <dimen name="paddingSizeNone">0dp</dimen>
+        <dimen name="paddingSizeMicro">2dp</dimen>
+        <dimen name="paddingSizeSmall">4dp</dimen>
+        <dimen name="paddingSizeSmallPlus">17dp</dimen>
+        <dimen name="paddingSizeSmallExtraPlus">7.5dp</dimen>
+        <dimen name="paddingSizeMedium">16dp</dimen>
+        <dimen name="paddingSizeMediumPlus">12dp</dimen>
+        <dimen name="paddingSizeMediumPlusPlus">17dp</dimen>
+        <dimen name="paddingSizeMediumExtraPlus">15dp</dimen>
+        <dimen name="paddingSizeMediumExtraPlusPlus">30.5dp</dimen>
+        <dimen name="paddingSizeLarge">25dp</dimen>
+        <dimen name="paddingSizeExtraLarge">30dp</dimen>
+        <dimen name="paddingSizeExtraLargePlus">40dp</dimen>
+        <dimen name="paddingSizeExtraLargePlusPlus">50dp</dimen>
+        <dimen name="paddingTextField">17.5dp</dimen>
+
+        <!-- Margin -->
+        <dimen name="marginSizeNano">2dp</dimen>
+        <dimen name="marginSizeMicro">3dp</dimen>
+        <dimen name="marginSizeMicroPlus">5dp</dimen>
+        <dimen name="marginSizeMicroPlusPlus">8dp</dimen>
+        <dimen name="marginSizeSmall">10dp</dimen>
+        <dimen name="marginSizeSmallPlus">15dp</dimen>
+        <dimen name="marginSizeMedium">20dp</dimen>
+        <dimen name="marginSizeLarge">25dp</dimen>
+        <dimen name="marginSizeXLarge">30dp</dimen>
+        <dimen name="marginSizeXXLarge">35dp</dimen>
+        <dimen name="marginSizeExtraLarge">40dp</dimen>
+        <dimen name="marginSizeExtraLargePlus">50dp</dimen>
+        <dimen name="marginSizeExtraLargePlusPlus">150dp</dimen>
+        <dimen name="marginSizeExtraLargePlusPlusPlus">180dp</dimen>
+        <dimen name="SizeZero">0dp</dimen>
+        <dimen name="SizeMicro">1dp</dimen>
+        <dimen name="SizeSmall">2dp</dimen>
+        <dimen name="SizeBlewMedium">6dp</dimen> <!-- using this in the messages page -->
+        <dimen name="SizeMedium">8dp</dimen> <!-- using this in the preferences page -->
+        <dimen name="stdBtnHeight">54dp</dimen> <!-- standard button height -->
+        <dimen name="srdLableSize">40dp</dimen> <!-- standard button height -->
+        <dimen name="stdBtnHeightplus">55dp</dimen>
+        <dimen name="bigBtnHeight">60dp</dimen> <!-- big button height -->
+        <dimen name="thumbImageheight">90dp</dimen> <!-- big button height -->
+        <dimen name="stdGutterSize">15dp</dimen>
+        <dimen name="stdBtnWidth">190dp</dimen>
+        <dimen name="stdGutterSizeMed">18dp</dimen>
+        <dimen name="stdGutterRightSizeMed">6dp</dimen>
+        <dimen name="stdGutterRightSize">10dp</dimen>
+        <dimen name="stdDividerHeightMicro">1dp</dimen>
+        <dimen name="stdDividerHeightSmall">2dp</dimen>
+        <dimen name="stdDividerHeight">24dp</dimen>
+        <dimen name="onePixel">1px</dimen>
+        <dimen name="textSizeStdForm">18sp</dimen> <!-- ALL form fields -->
+        <dimen name="largeEdiTextSize">90dp</dimen> <!-- ALL form fields -->
+
+
+        <!-- deimension for Meterial Design recommended use these -->
+        <!-- See http://www.google.com/design/spec/components/dialogs.html#dialogs-specs -->
+
+        <dimen name="md_dialog_frame_margin">24dp</dimen>
+        <dimen name="md_main_frame_margin">16dp</dimen>
+        <dimen name="md_title_margin_plainlist">8dp</dimen>
+
+        <!-- 64dp + 8dp (left and right insets) -->
+        <dimen name="md_button_min_width">72dp</dimen>
+
+        <!-- Above and below buttons, 36+12=48 for the height of the button frame -->
+        <dimen name="md_button_inset_vertical">6dp</dimen>
+        <dimen name="md_button_inset_horizontal">4dp</dimen>
+        <dimen name="md_button_padding_horizontal">8dp</dimen>
+        <dimen name="md_button_padding_vertical">4dp</dimen>
+        <dimen name="md_button_padding_horizontal_internalexternal">32dp</dimen>
+
+        <!-- 16dp - 4dp (inset) -->
+        <dimen name="md_button_padding_frame_side">12dp</dimen>
+        <dimen name="md_neutral_button_margin">12dp</dimen>
+        <dimen name="md_button_padding_frame_bottom">8dp</dimen>
+        <dimen name="md_button_height">48dp</dimen>
+        <dimen name="md_title_textsize">20sp</dimen>
+        <dimen name="md_content_textsize">18sp</dimen>
+        <dimen name="md_button_textsize">14sp</dimen>
+        <dimen name="md_listitem_textsize">18sp</dimen>
+        <dimen name="md_listitem_height">75dp</dimen>
+        <dimen name="md_listitem_control_margin">16dp</dimen>
+        <dimen name="md_icon_margin">16dp</dimen>
+        <dimen name="md_listitem_margin_left">24dp</dimen>
+        <dimen name="md_action_corner_radius">2dp</dimen>
+
+        <dimen name="launch_logo_size">150dp</dimen>
+
+        <dimen name="thin_line">0.05dp</dimen>
+
+</resources>

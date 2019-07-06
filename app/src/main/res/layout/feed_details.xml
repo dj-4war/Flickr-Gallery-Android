@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/content"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/marginSizeMedium"
+        tools:context=".activities.FlickrGalleryActivity">
+
+    <!-- Author TV -->
+    <TextView
+            android:id="@+id/feed_details_author_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/marginSizeMedium"
+            android:text="Feed Authour"
+            style="@style/title_style"
+    />
+
+    <!-- Feed Author URL -->
+    <TextView
+            android:id="@+id/feed_details_author_url_tv"
+            android:layout_width="wrap_content"
+            android:paddingLeft="@dimen/marginSizeMedium"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            app:layout_constraintTop_toBottomOf="@id/feed_details_author_tv"
+            android:text="Author URL"
+            android:textColor="@color/colorPrimaryDark"
+    />
+
+
+    <View android:layout_width="match_parent"
+          android:layout_height="@dimen/thin_line"
+          android:layout_marginLeft="@dimen/marginSizeMedium"
+          android:background="@color/WhiteSmoke"
+          app:layout_constraintTop_toBottomOf="@id/feed_details_author_url_tv"
+          android:layout_marginTop="@dimen/marginSizeMedium"
+          android:id="@+id/horizontal_seperation"
+          android:layout_marginRight="@dimen/marginSizeMedium"/>
+
+
+    <!-- Post  desc -->
+    <TextView
+            android:layout_marginTop="@dimen/marginSizeSmallPlus"
+            android:id="@+id/feed_details_img_desc_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/marginSizeMedium"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_seperation"
+            android:text="Poste desc"
+            style="@style/title_style"
+            android:textColor="@color/colorPrimaryDark"
+    />
+
+    <!-- Post  date -->
+    <TextView
+            android:id="@+id/feed_details_posted_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Poste date"
+            android:paddingLeft="@dimen/marginSizeMedium"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/feed_details_img_desc_tv"
+            android:textColor="@color/colorPrimaryDark"
+            tools:layout_editor_absoluteY="547dp"/>
+
+    <!-- Posted by-->
+    <TextView
+            android:id="@+id/feed_details_posted_by_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/feed_details_posted_date_tv"
+            android:text="Feed Titler"
+            android:paddingLeft="@dimen/marginSizeMedium"
+            style="@style/sub_title_style"
+            android:textColor="@color/WhiteSmoke"
+            android:textSize="@dimen/marginSizeSmallPlus"
+    />
+
+
+    <!-- Posted image URL-->
+    <ImageView
+            android:id="@+id/feed_details_posted_img_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Posted image"
+            android:layout_marginTop="@dimen/marginSizeExtraLargePlusPlusPlus"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feed_details_posted_by_tv"
+    />
+
+    <!-- Cancel feed-->
+    <ImageView
+            android:id="@+id/feed_details_close_iv"
+            android:layout_width="@dimen/cancel_btn_size"
+            android:layout_height="@dimen/cancel_btn_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/cancel_ic"
+            android:layout_marginRight="@dimen/marginSizeSmallPlus"
+            app:layout_constraintTop_toBottomOf="@id/feed_details_posted_by_tv"
+    />
+
+
+</android.support.constraint.ConstraintLayout>

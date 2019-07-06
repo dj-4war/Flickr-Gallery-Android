@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+            android:id="@+id/gallery_thumbnail_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:elevation="3dp"
+            card_view:cardCornerRadius="1dp">
+        <!--Shashi : Commenting this because we want to use Image Raw content to build gallery, if we want to build with web as a content we can uncomment
+        <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp">
+            <WebView android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+            android:id="@+id/feed_web_view">
+
+            </WebView>
+        </RelativeLayout>-->
+
+        <RelativeLayout
+                android:visibility="visible"
+                android:layout_width="@dimen/feed_thumb_width"
+                android:layout_height="@dimen/feed_thumb_height"
+                >
+
+            <ImageView
+                    android:id="@+id/feed_thumnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/paddingSizeSmall"
+                    android:layout_centerVertical="true"
+                    android:background="@color/transparent_gray"
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="@dimen/paddingSizeMicro">
+
+
+                <TextView
+                        android:id="@+id/feed_author_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Feed"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/textSizeMedium"/>
+
+                <TextView
+                        android:id="@+id/feed_title_tv"
+                        android:layout_below="@id/feed_author_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sub title"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/textSizeSmallPlus"/>
+                <TextView
+                        android:id="@+id/feed_date_tv"
+                        android:layout_below="@id/feed_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/textSizeMicro"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
