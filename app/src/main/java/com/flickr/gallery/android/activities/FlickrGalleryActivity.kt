@@ -19,18 +19,20 @@ import android.widget.AdapterView.OnItemClickListener
 import com.flickr.gallery.android.R
 import com.flickr.gallery.android.fragments.FeedDetailsDialogFragment
 import com.flickr.gallery.android.models.FeedContent
+import io.reactivex.disposables.Disposable
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 
 /**
- * This activity is responsible to deal with feed gallery.
+ * This activity is responsible to reidar  feed gallery on UI .
  * @author Shashi
  */
 
 class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
 
     val TAG: String = FlickrGalleryActivity::class.java.name
+    var feedResponseDisposable : Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +68,7 @@ class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
     }
 
     private fun processFeedResult() {
-        FlickerApp.getAppComponent()
+        feedResponseDisposable = FlickerApp.getAppComponent()
             .getBus()
             .listen(DataResponse::class.java)
             .subscribe { dataResp ->
@@ -96,16 +98,20 @@ class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
             }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        feedResponseDisposable!!.dispose()
+    }
 
     @VisibleForTesting
     private fun buildFeeds(rootFeed: RootFeed) {
         try {
             loading_pb.visibility = View.VISIBLE
-            supportActionBar!!.setSubtitle(rootFeed.title)
+            supportActionBar!!.subtitle = rootFeed.title
             doAsync {
                 val parsedFeedList = FlickrFeedController.getParsedFeedContent(rootFeed)
                 uiThread {
-                    val  feedGalleryAdapter = FeedGalleryAdapter(parsedFeedList, this@FlickrGalleryActivity)
+                    val feedGalleryAdapter = FeedGalleryAdapter(parsedFeedList, this@FlickrGalleryActivity)
                     flickr_gallery_gridview.adapter = feedGalleryAdapter
                     loading_pb.visibility = View.GONE
                 }
