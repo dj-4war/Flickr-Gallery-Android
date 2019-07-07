@@ -1,5 +1,6 @@
-package com.flickr.gallery.android
+package com.flickr.gallery.android.integration
 
+import com.flickr.gallery.android.BaseTestClass
 import com.flickr.gallery.android.api.http.FlickrHTTPClient
 import com.flickr.gallery.android.api.http.IFlikerAPIService
 import com.flickr.gallery.android.controllers.FlickrPhotosController
@@ -11,7 +12,6 @@ import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.runners.MockitoJUnitRunner
-import org.xmlpull.v1.util.XmlPullUtil.nextText
 import org.jsoup.Jsoup
 
 /**
@@ -64,26 +64,7 @@ class FlickrAPIIntegrationTest : BaseTestClass() {
     }
 
     @Test
-    fun canParseSampleContent(){
-        val feedContent = "<p><a href=\"https://www.flickr.com/people/182381730@N03/\">rajeshpradhan3108</a> posted a photo:</p>\n" +
-                "\t\n" +
-                "<p><a href=\"https://www.flickr.com/photos/182381730@N03/48187172471/\" title=\"DSC05538\"><img src=\"https://live.staticflickr.com/65535/48187172471_22edeea8b4_m.jpg\" width=\"240\" height=\"160\" alt=\"DSC05538\" /></a></p>"
-        val doc = Jsoup.parse(feedContent)
-        val elements = doc.getElementsByTag("a")
-
-        for(element in elements){
-            val postedBy = element.text()
-            val postTitle = element.attr("title")
-            val imgElement = element.getElementsByAttribute("src")
-            val imgURL = imgElement.attr("src")
-            FlickrLogger.infoLog(TAG, "Posted by ->  ==>$postedBy")
-            FlickrLogger.infoLog(TAG, "Image Title by ->  ==>$postTitle")
-            FlickrLogger.infoLog(TAG, "Image URL -> ==>$imgURL")
-        }
-    }
-
-    @Test
-    fun canParseFeedContent(){
+    fun canParseFeedContentFromServer(){
         val response = hitPublicPhotosEndPoint()
         val publicFeeds = response.body()
         val feedContentList = FlickrPhotosController.getParsedFeedContent(publicFeeds!!)

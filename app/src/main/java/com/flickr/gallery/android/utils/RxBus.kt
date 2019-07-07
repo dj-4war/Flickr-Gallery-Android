@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * TO pass the data between classes.UI RxBus does the transport job with pub sub model
+ * TO pass the data between classes.UI RxBus does the data transport job with pub sub model
  */
 
 object RxBus{

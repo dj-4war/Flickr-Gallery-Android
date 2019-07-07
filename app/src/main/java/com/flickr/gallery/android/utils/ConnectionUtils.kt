@@ -1,7 +1,7 @@
 package com.flickr.gallery.android.utils
 
 import android.net.ConnectivityManager
-import com.flickr.gallery.android.FlickerApp
+import com.flickr.gallery.android.application.FlickerApp
 
 /**
  * Connection utils class to provide connection related utility.

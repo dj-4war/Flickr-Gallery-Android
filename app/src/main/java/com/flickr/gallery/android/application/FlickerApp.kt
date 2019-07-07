@@ -1,6 +1,9 @@
-package com.flickr.gallery.android
+package com.flickr.gallery.android.application
 
 import android.app.Application
+import com.flickr.gallery.android.di.DaggerFlickrAppComponent
+import com.flickr.gallery.android.di.FlickrAppComponent
+import com.flickr.gallery.android.di.FlickrAppModule
 import com.flickr.gallery.android.utils.FlickrLogger
 
 

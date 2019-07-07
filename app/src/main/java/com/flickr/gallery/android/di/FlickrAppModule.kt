@@ -1,10 +1,10 @@
-package com.flickr.gallery.android
+package com.flickr.gallery.android.di
 
 import android.content.Context
+import com.flickr.gallery.android.application.FlickerApp
 import com.flickr.gallery.android.utils.RxBus
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 /**
  * Dagger module to hold app resources required to use across the app.
@@ -26,7 +26,7 @@ class FlickrAppModule constructor(app: FlickerApp)  {
     }
 
     @Provides
-    fun providesApp() : FlickerApp{
+    fun providesApp() : FlickerApp {
         return mFlikrApp!!
     }
 

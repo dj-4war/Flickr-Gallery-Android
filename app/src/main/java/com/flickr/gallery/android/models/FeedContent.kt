@@ -2,6 +2,11 @@ package com.flickr.gallery.android.models
 
 import java.io.Serializable
 
+/**
+ * Filtered feed content will be used to to bind with UI elements.
+ * @author Shashi
+ */
+
 class FeedContent : Serializable{
 
     var feedTitle : String? = null

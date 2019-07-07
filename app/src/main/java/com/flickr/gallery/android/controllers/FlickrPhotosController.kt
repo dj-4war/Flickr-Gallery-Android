@@ -1,6 +1,6 @@
 package com.flickr.gallery.android.controllers
 
-import com.flickr.gallery.android.FlickerApp
+import com.flickr.gallery.android.application.FlickerApp
 import com.flickr.gallery.android.api.DataResponse
 import com.flickr.gallery.android.api.PUBLIC_FEEDS
 import com.flickr.gallery.android.api.http.FlickrHTTPClient

@@ -1,4 +1,4 @@
-package com.flickr.gallery.android
+package com.flickr.gallery.android.di
 
 import android.content.Context
 import com.flickr.gallery.android.utils.RxBus

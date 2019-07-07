@@ -6,7 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import com.flickr.gallery.android.FlickerApp
+import com.flickr.gallery.android.application.FlickerApp
 import com.flickr.gallery.android.adapters.FeedGalleryAdapter
 import com.flickr.gallery.android.api.DataResponse
 import com.flickr.gallery.android.api.PUBLIC_FEEDS
