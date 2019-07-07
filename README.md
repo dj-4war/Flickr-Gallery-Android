@@ -23,7 +23,7 @@ data view.
 Controllers :
 FeedController is responsible to provide the and process the data.
 
-Data flows through RxBus, controller publish the data as when controller process the data.
+Data flows through RxBus and controller publish the data as when it process the data once UI gets it will be rendered on UI. 
 
 
 
