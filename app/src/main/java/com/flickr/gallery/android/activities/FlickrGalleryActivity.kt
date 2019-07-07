@@ -10,7 +10,7 @@ import com.flickr.gallery.android.application.FlickerApp
 import com.flickr.gallery.android.adapters.FeedGalleryAdapter
 import com.flickr.gallery.android.api.DataResponse
 import com.flickr.gallery.android.api.PUBLIC_FEEDS
-import com.flickr.gallery.android.controllers.FlickrPhotosController
+import com.flickr.gallery.android.controllers.FlickrFeedController
 import com.flickr.gallery.android.models.RootFeed
 import com.flickr.gallery.android.utils.ConnectionUtils
 import com.flickr.gallery.android.utils.FlickrLogger
@@ -103,7 +103,7 @@ class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
             loading_pb.visibility = View.VISIBLE
             supportActionBar!!.setSubtitle(rootFeed.title)
             doAsync {
-                val parsedFeedList = FlickrPhotosController.getParsedFeedContent(rootFeed)
+                val parsedFeedList = FlickrFeedController.getParsedFeedContent(rootFeed)
                 uiThread {
                     val  feedGalleryAdapter = FeedGalleryAdapter(parsedFeedList, this@FlickrGalleryActivity)
                     flickr_gallery_gridview.adapter = feedGalleryAdapter
@@ -118,7 +118,7 @@ class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
     private fun getPublicFeeds() {
         if(ConnectionUtils.isConnectedToNetwork()) {
             loading_pb.visibility = View.VISIBLE
-            FlickrPhotosController.getPhotosFromServer()
+            FlickrFeedController.getPhotosFromServer()
         }else{
             showSnackBar(getString(R.string.no_network),true, false, content)
         }

@@ -36,7 +36,7 @@ class ParsingTest : BaseTestClass(){
     }
 
     @Test
-    fun canPasrseFeedDate(){
+    fun canParseFeedDate(){
         val feedDate  = FlickrUtils.parseFeedDate("2019-07-07T07:12:42Z")
         Assert.assertTrue(feedDate.isNotEmpty())
     }
@@ -46,6 +46,4 @@ class ParsingTest : BaseTestClass(){
         val feedTime  = FlickrUtils.parseFeedTime("2019-07-07T07:12:42Z")
         Assert.assertTrue(feedTime.isNotEmpty())
     }
-
-
 }

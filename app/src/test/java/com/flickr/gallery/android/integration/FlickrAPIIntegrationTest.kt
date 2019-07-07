@@ -3,7 +3,7 @@ package com.flickr.gallery.android.integration
 import com.flickr.gallery.android.BaseTestClass
 import com.flickr.gallery.android.api.http.FlickrHTTPClient
 import com.flickr.gallery.android.api.http.IFlikerAPIService
-import com.flickr.gallery.android.controllers.FlickrPhotosController
+import com.flickr.gallery.android.controllers.FlickrFeedController
 import com.flickr.gallery.android.models.RootFeed
 import com.flickr.gallery.android.utils.FlickrLogger
 import junit.framework.Assert.assertEquals
@@ -12,7 +12,6 @@ import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.runners.MockitoJUnitRunner
-import org.jsoup.Jsoup
 
 /**
  * This is class holds Flickr integration tests and this class is responsible to test APIs and its behaviour
@@ -67,7 +66,7 @@ class FlickrAPIIntegrationTest : BaseTestClass() {
     fun canParseFeedContentFromServer(){
         val response = hitPublicPhotosEndPoint()
         val publicFeeds = response.body()
-        val feedContentList = FlickrPhotosController.getParsedFeedContent(publicFeeds!!)
+        val feedContentList = FlickrFeedController.getParsedFeedContent(publicFeeds!!)
         val pasedListSize = feedContentList.size
         Assert.assertTrue(pasedListSize > 0)
     }

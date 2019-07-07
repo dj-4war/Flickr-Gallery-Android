@@ -18,14 +18,14 @@ import retrofit2.Response
  * @author Shashi , created on 2nd July 2019
  */
 
-object FlickrPhotosController {
+object FlickrFeedController : IFeedProvider{
 
-    private val TAG = FlickrPhotosController::class.java.canonicalName
+    private val TAG = FlickrFeedController::class.java.canonicalName
 
     /**
      * API to get public photos from server
      */
-    fun getPhotosFromServer(): DataResponse<RootFeed> {
+    override fun getPhotosFromServer(): DataResponse<RootFeed> {
         val serverResponse = DataResponse<RootFeed>()
         try {
             val flickrAPIService: IFlikerAPIService =
@@ -60,7 +60,7 @@ object FlickrPhotosController {
      * We get HTML content from Content tag in feed xml, we need to parse and build to show on UI.
      * We could also use direct HTML  content to render on Webview but to beatify Gallery it may not be suitable data
      */
-    fun getParsedFeedContent(rootFeed: RootFeed): MutableList<FeedContent> {
+    override  fun getParsedFeedContent(rootFeed: RootFeed): MutableList<FeedContent> {
         var processedFeedList: MutableList<FeedContent>? =  mutableListOf()
         try {
             val feedList = rootFeed.entries
