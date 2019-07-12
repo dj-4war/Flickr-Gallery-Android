@@ -8,7 +8,7 @@ import retrofit2.http.GET
  * API service interface to call APIs from consume server APIs.
  */
 
-interface IFlikerAPIService{
+interface IFlckrAPIService{
 
     /**
      * Open API to get flickr public images.

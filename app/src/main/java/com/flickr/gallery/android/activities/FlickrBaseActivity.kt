@@ -5,8 +5,8 @@ package com.flickr.gallery.android.activities
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -40,10 +40,10 @@ open class FlickrBaseActivity : AppCompatActivity() {
                 val bar = Snackbar.make(rootView!!, msg, if (shouldDismiss) Snackbar.LENGTH_LONG else Snackbar.LENGTH_INDEFINITE)
                 val sbView = bar.view
                 sbView.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                val textView = sbView.findViewById<View>(android.support.design.R.id.snackbar_text) as TextView
+                val textView = sbView.findViewById<View>(R.id.snackbar_text) as TextView
                 textView.setTextColor(Color.WHITE)
                 textView.setTypeface(null, Typeface.BOLD)
-                val snackAction = sbView.findViewById<View>(android.support.design.R.id.snackbar_action) as TextView
+                val snackAction = sbView.findViewById<View>(R.id.snackbar_action) as TextView
                 snackAction.setTextColor(resources.getColor(R.color.colorAccent))
                 bar.setAction(getString(R.string.close_txt)) { bar.dismiss() }
                 if (shouldShowOnTop) {

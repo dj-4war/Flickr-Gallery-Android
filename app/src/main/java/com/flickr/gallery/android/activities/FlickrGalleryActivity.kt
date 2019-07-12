@@ -1,27 +1,21 @@
 package com.flickr.gallery.android.activities
 
 import android.os.Bundle
-import android.support.annotation.VisibleForTesting
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import com.flickr.gallery.android.application.FlickerApp
-import com.flickr.gallery.android.adapters.FeedGalleryAdapter
-import com.flickr.gallery.android.api.DataResponse
-import com.flickr.gallery.android.api.PUBLIC_FEEDS
-import com.flickr.gallery.android.controllers.FlickrFeedController
-import com.flickr.gallery.android.models.RootFeed
-import com.flickr.gallery.android.utils.ConnectionUtils
-import com.flickr.gallery.android.utils.FlickrLogger
-import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.AdapterView.OnItemClickListener
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.flickr.gallery.android.R
+import com.flickr.gallery.android.adapters.FeedGalleryAdapter
 import com.flickr.gallery.android.fragments.FeedDetailsDialogFragment
 import com.flickr.gallery.android.models.FeedContent
-import io.reactivex.disposables.Disposable
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import com.flickr.gallery.android.utils.ConnectionUtils
+import com.flickr.gallery.android.utils.FlickrLogger
+import com.flickr.gallery.android.viewmodel.GalleryViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
@@ -31,16 +25,23 @@ import org.jetbrains.anko.uiThread
 
 class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
 
-    val TAG: String = FlickrGalleryActivity::class.java.name
-    var feedResponseDisposable : Disposable? = null
+    private val TAG: String = FlickrGalleryActivity::class.java.name
+    private lateinit var mGallaryViewModel : GalleryViewModel
+    private lateinit var mParsedFeedList : MutableList<FeedContent>
+    private lateinit var feedGalleryAdapter : FeedGalleryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        init()
         setupUI()
         getPublicFeeds();
-        processFeedResult()
         setListenersToViews()
+    }
+
+    private fun init() {
+        mGallaryViewModel = ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+        mParsedFeedList = mutableListOf()
     }
 
     private fun setListenersToViews() {
@@ -49,6 +50,8 @@ class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
 
     private fun setupUI() {
         supportActionBar!!.elevation = 0.0F
+        feedGalleryAdapter = FeedGalleryAdapter(mParsedFeedList, this@FlickrGalleryActivity)
+        flickr_gallery_gridview.adapter = feedGalleryAdapter
     }
 
 
@@ -61,70 +64,28 @@ class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.main_action_refresh -> getPublicFeeds()
-            else -> {
-            }
+
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun processFeedResult() {
-        feedResponseDisposable = FlickerApp.getAppComponent()
-            .getBus()
-            .listen(DataResponse::class.java)
-            .subscribe { dataResp ->
-                try {
-                    FlickrLogger.infoLog(TAG, "processFeedResult() :: Received data from feed response")
-                    loading_pb.visibility = View.GONE
-                    if (dataResp != null) {
-                        when (dataResp.requestType) {
-                            PUBLIC_FEEDS ->
-                                if (dataResp.isSuccess!!) {
-                                    if ((dataResp.entity != null)) {
-                                        val rootFeed  = dataResp.entity as RootFeed
-                                        FlickrLogger.infoLog(TAG, "processFeedResult() :: Feeds is received from and size ${rootFeed.entries!!.size}")
-                                        buildFeeds(rootFeed)
-                                    } else {
-                                        showSnackBar(getString(R.string.invalid_data_txt), true, false, content)
-                                    }
-                                } else {
-                                    showSnackBar(getString(R.string.server_error)+dataResp.status, true, false, content)
-                                }
-                        }
-                    }
-                } catch (ex: Exception) {
-                    FlickrLogger.errLog(TAG, "processFeedResult() :: Error while getting  feeds ", ex)
-                    showSnackBar(getString(R.string.server_error)+dataResp.status, true, false, content)
-                }
-            }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
-        feedResponseDisposable!!.dispose()
-    }
-
-    @VisibleForTesting
-    private fun buildFeeds(rootFeed: RootFeed) {
-        try {
-            loading_pb.visibility = View.VISIBLE
-            supportActionBar!!.subtitle = rootFeed.title
-            doAsync {
-                val parsedFeedList = FlickrFeedController.getParsedFeedContent(rootFeed)
-                uiThread {
-                    val feedGalleryAdapter = FeedGalleryAdapter(parsedFeedList, this@FlickrGalleryActivity)
-                    flickr_gallery_gridview.adapter = feedGalleryAdapter
-                    loading_pb.visibility = View.GONE
-                }
-            }
-        }catch (ex : Exception){
-            FlickrLogger.errLog(TAG, "buildFeeds() :: Error while processing  feeds ", ex)
-        }
     }
 
     private fun getPublicFeeds() {
         if(ConnectionUtils.isConnectedToNetwork()) {
             loading_pb.visibility = View.VISIBLE
-            FlickrFeedController.getPhotosFromServer()
+            mGallaryViewModel.getFeedContent().observe(this, Observer<List<FeedContent>> {
+                feedData ->
+                if(feedData != null){
+                    FlickrLogger.infoLog(TAG, "getPublicFeeds() :: Received public feeds and feeds size : ${feedData.size}")
+                    mParsedFeedList.clear()
+                    mParsedFeedList.addAll(feedData)
+                    feedGalleryAdapter.notifyDataSetChanged()
+                    loading_pb.visibility = View.GONE
+                }
+            })
         }else{
             showSnackBar(getString(R.string.no_network),true, false, content)
         }
@@ -137,5 +98,4 @@ class FlickrGalleryActivity : FlickrBaseActivity(), OnItemClickListener{
         val feedDetailsFragDetails = FeedDetailsDialogFragment().newFragInstance("Feed Details", selectedFeed)
         feedDetailsFragDetails.show(fragManager, "feed_details_dialog" )
     }
-
 }

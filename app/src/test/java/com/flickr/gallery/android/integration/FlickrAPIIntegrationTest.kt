@@ -2,10 +2,10 @@ package com.flickr.gallery.android.integration
 
 import com.flickr.gallery.android.BaseTestClass
 import com.flickr.gallery.android.api.http.FlickrHTTPClient
-import com.flickr.gallery.android.api.http.IFlikerAPIService
-import com.flickr.gallery.android.controllers.FlickrFeedController
+import com.flickr.gallery.android.api.http.IFlckrAPIService
 import com.flickr.gallery.android.models.RootFeed
 import com.flickr.gallery.android.utils.FlickrLogger
+import com.flickr.gallery.android.utils.ParserUtils
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
 import org.junit.Assert
@@ -66,14 +66,14 @@ class FlickrAPIIntegrationTest : BaseTestClass() {
     fun canParseFeedContentFromServer(){
         val response = hitPublicPhotosEndPoint()
         val publicFeeds = response.body()
-        val feedContentList = FlickrFeedController.getParsedFeedContent(publicFeeds!!)
+        val feedContentList = ParserUtils.getParsedFeedContent(publicFeeds!!)
         val pasedListSize = feedContentList.size
         Assert.assertTrue(pasedListSize > 0)
     }
 
     private fun hitPublicPhotosEndPoint(): retrofit2.Response<RootFeed> {
-        val flickrAPIService: IFlikerAPIService =
-            FlickrHTTPClient.getHttpClient()!!.create(IFlikerAPIService::class.java)  // Get API service
+        val flickrAPIService: IFlckrAPIService =
+            FlickrHTTPClient.getHttpClient()!!.create(IFlckrAPIService::class.java)  // Get API service
         val publicPhotos = flickrAPIService.getFlickrPhotos()
         return publicPhotos.execute()
     }

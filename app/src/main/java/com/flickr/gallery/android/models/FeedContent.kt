@@ -1,5 +1,6 @@
 package com.flickr.gallery.android.models
 
+import androidx.lifecycle.ViewModel
 import java.io.Serializable
 
 /**
@@ -7,7 +8,7 @@ import java.io.Serializable
  * @author Shashi
  */
 
-class FeedContent : Serializable{
+class FeedContent :  Serializable{
 
     var feedTitle : String? = null
     var author : String? = null

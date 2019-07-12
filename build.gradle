@@ -2,14 +2,14 @@
 
 buildscript {
     ext{
-        retrofitVersion = '2.5.0'
+        retrofitVersion = '2.6.0'
         ok_HTTP_version = '3.13.1'
         kotlin_version = '1.3.31'
         dagger_version = '2.16'
         event_bus_version = '1.3.8'
         android_support_lib_verion = '28.0.0'
         glide_version = '4.9.0'
-        jsoup_version = '1.10.1'
+        jsoup_version = '1.12.1'
         ext.anko_version='0.10.8'
         buildToolsVersion = "28.0.3"
         androidxLibVersion = "1.0.0"
@@ -19,6 +19,7 @@ buildscript {
         extJUnitVersion = "1.1.2-alpha01"
         runnerVersion = "1.3.0-alpha01"
         espressoVersion = "3.3.0-alpha01"
+        lyfe_cycle_version = "1.1.1"
 
     }
 
