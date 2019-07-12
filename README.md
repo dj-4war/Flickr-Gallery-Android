@@ -1,6 +1,9 @@
 # Flickr-Gallery-Android
 Purpose of this project is build a Flickr Gallery for Public posts and show the details of them.
 
+Architecture : 
+Application follows the MVVM architecture, the LiveData concept to post the data to the observable views.   
+
 #Features :
 - Get Flickr live public posts.
 - Show them on Gallery view.
@@ -20,10 +23,12 @@ data view.
   we need to parse HTML to get the data from content of the feed. Current code does #2 route. Still the views and code is inplace for #1
   if we want to try.
 
-Controllers :
-FeedController is responsible to provide the and process the data.
+ModelView  :
+- A model view is the data provider to the view
 
-Data flows through RxBus and controller publish the data as when it process the data once UI gets it will be rendered on UI. 
+Repository : 
+ - This class is responsible to process data and post to the respective views who are observing. 
+
 
 
 
